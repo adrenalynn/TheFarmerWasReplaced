@@ -1,13 +1,6 @@
 import util
 
 
-def init_size_dict():
-    result = {}
-    for i in range(15, 6, -1):
-        result[i] = []
-    return result
-
-
 def first_planting():
     for x in range(FIELD_SIZE):
         for y in range(FIELD_SIZE):
@@ -31,7 +24,9 @@ def replant_all():
 # MAIN
 clear()
 FIELD_SIZE = get_world_size()
-SIZES = init_size_dict()
+SIZES = {15: [], 14: [], 13: [], 12: [],
+11: [], 10: [], 9: [], 8: [], 7: []}
+
 first_planting()
 while num_items(Items.Power) < 100000:
     for size in range(15, 6, -1):
