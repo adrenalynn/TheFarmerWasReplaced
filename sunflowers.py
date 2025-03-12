@@ -8,15 +8,14 @@ def init_size_dict():
     return result
 
 
-def first_planting(first_run=False):
+def first_planting():
     for x in range(FIELD_SIZE):
         for y in range(FIELD_SIZE):
             util.fast_move(x, y)
-            if first_run:
-                till()
+            till()
             plant(Entities.Sunflower)
             SIZES[measure()].append((x, y))
-            util.do_water(0.6)
+            util.do_water(0.4)
 
 
 def replant_all():
@@ -33,15 +32,13 @@ def replant_all():
 clear()
 FIELD_SIZE = get_world_size()
 SIZES = init_size_dict()
-first_planting(True)
+first_planting()
 while num_items(Items.Power) < 100000:
     for size in range(15, 6, -1):
         for x, y in SIZES[size]:
             util.fast_move(x, y)
-            if can_harvest():
-                harvest()
             if not can_harvest():
                 use_item(Items.Fertilizer)
-                harvest()
+            harvest()
         SIZES[size] = []
     replant_all()
